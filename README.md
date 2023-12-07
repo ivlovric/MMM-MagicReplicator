@@ -14,7 +14,8 @@ Display Recipes collection as cards from local file or [Paprika](https://www.pap
 | Working | `1.0.0` | 2023-12-07 | YES |
 
 
-<img src="https://github.com/ivlovric/MMM-MagicReplicator/blob/main/assets/foodreplicator-logo.jpg" width="400" height="400">
+<img src="https://github.com/ivlovric/MMM-MagicReplicator/blob/main/assets/foodreplicator-logo.jpg" width="300" height="300">
+<img src="https://github.com/ivlovric/MMM-MagicReplicator/blob/main/assets/MagicReplicator-screenshot.png" width="750" height="450">
 
 ## Installation
 
