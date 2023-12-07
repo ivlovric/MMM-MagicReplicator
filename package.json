@@ -1,0 +1,22 @@
+{
+  "name": "MMM-MagicReplicator",
+  "version": "1.0.0",
+  "description": "Todo: Insert description here!",
+  "main": "MMM-MagicReplicator.js",
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "grunt": "latest",
+    "grunt-eslint": "latest",
+    "grunt-jsonlint": "latest",
+    "grunt-markdownlint": "^1.0.13",
+    "grunt-stylelint": "latest",
+    "grunt-yamllint": "latest",
+    "stylelint-config-standard": "latest",
+    "time-grunt": "latest"
+  },
+  "dependencies": {
+    "async": "^3.2.5",
+    "paprika-api": "^1.0.3"
+  }
+}
