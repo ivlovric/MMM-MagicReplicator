@@ -68,3 +68,5 @@ When using **local source**, check already provided example recipe list in `loca
 | `password`        | *Mandatory* when using Paprika as recipes provider, otherwise optional
 | `refreshInterval`        | *Optional* Recipes refresh interval
 | `source`        | *Optional* "local" or "paprika", default is local
+
+Thanks to https://github.com/kaelspencer/MMM-PaprikaMenu and Kael for introducing me with node paprika library.
