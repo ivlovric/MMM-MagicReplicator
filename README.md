@@ -6,7 +6,7 @@ This is a module for the [MagicMirror²](https://github.com/MichMich/MagicMirror
 [![GitHub last commit](https://img.shields.io/github/last-commit/ivlovric/MMM-MagicReplicator/main)](https://github.com/ivlovric/MMM-MagicReplicator)
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/ivlovric/MMM-MagicReplicator/graphs/commit-activity)
 
-Display Recipes collection as cards from local file or [Paprika](https://www.paprikaapp.com/) laced with interactive UI intended for modern kitchens, restaurants or just for fun on large touch screens kiosks for best experience.
+Display Recipes collection as cards from local file or [Paprika](https://www.paprikaapp.com/) laced with interactive UI intended for modern kitchens, restaurants or just for fun on large touch screens or kiosks for best experience.
 
 
 
