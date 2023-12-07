@@ -8,6 +8,7 @@ This is a module for the [MagicMirror²](https://github.com/MichMich/MagicMirror
 
 Display Recipes collection as cards from local file or [Paprika](https://www.paprikaapp.com/) laced with interactive UI intended for modern kitchens, restaurants or just for fun on large touch screens or kiosks for best experience.
 
+Background, icons and logo credit to Dall-E
 
 
 | STATUS: | Version | Date | Maintained? |
