@@ -3,7 +3,7 @@
 This is a module for the [MagicMirror²](https://github.com/MichMich/MagicMirror/).
 
 [![MagicMirror2](https://img.shields.io/badge/MagicMirror-2.2.2-lightgray.svg)](https://github.com/MichMich/MagicMirror)
-[![GitHub last commit](https://img.shields.io/github/last-commit/E3V3A/MMM-FlightsAbove.svg)](https://github.com/ivlovric/MMM-MagicReplicator)
+[![GitHub last commit](https://img.shields.io/github/last-commit/ivlovric/MMM-MagicReplicator/main)](https://github.com/ivlovric/MMM-MagicReplicator)
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/ivlovric/MMM-MagicReplicator/graphs/commit-activity)
 
 Display Recipes collection as cardsfrom local file or Paprika intended mostly to be run on fullscreen and with touch support.
@@ -12,6 +12,7 @@ Display Recipes collection as cardsfrom local file or Paprika intended mostly to
 | STATUS: | Version | Date | Maintained? |
 |:------- |:------- |:---- |:----------- |
 | Working | `1.0.0` | 2023-12-07 | YES |
+
 
 
 ## Installation
@@ -37,7 +38,6 @@ var config = {
     module: "MMM-MagicReplicator",
     header: "My Recipes",
     position: "fullscreen_above",
-    classes: "default everyone",
     config: {
         email: "",
         password: "",
@@ -53,5 +53,10 @@ var config = {
 
 | Option           | Description
 |----------------- |-----------
-| `option1`        | *Required* DESCRIPTION HERE
-| `option2`        | *Optional* DESCRIPTION HERE TOO <br><br>**Type:** `int`(milliseconds) <br>Default 60000 milliseconds (1 minute)
+| `module `        | *Required* Module name
+| `header`        | *Optional* Header text
+| `position`        | *Optional* Any Magic Mirror position. fullscreen_above and fullscreen_below are recommended
+| `email`        | *Mandatory* when using Paprika as recipes provider, otherwise optional
+| `password`        | *Mandatory* when using Paprika as recipes provider, otherwise optional
+| `refreshInterval`        | *Optional* Recipes refresh interval
+| `source`        | *Optional* "local" or "paprika", default is local
