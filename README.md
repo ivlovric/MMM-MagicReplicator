@@ -53,6 +53,8 @@ var config = {
 }
 ```
 
+When using local source, check already provided example recipe list in local_recipes.json to build your own.
+
 ## Configuration options
 
 | Option           | Description
