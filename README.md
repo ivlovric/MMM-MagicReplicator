@@ -6,7 +6,7 @@ This is a module for the [MagicMirror²](https://github.com/MichMich/MagicMirror
 [![GitHub last commit](https://img.shields.io/github/last-commit/ivlovric/MMM-MagicReplicator/main)](https://github.com/ivlovric/MMM-MagicReplicator)
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/ivlovric/MMM-MagicReplicator/graphs/commit-activity)
 
-Display Recipes collection as cardsfrom local file or Paprika intended mostly to be run on fullscreen and with touch support.
+Display Recipes collection as cards from local file or [Paprika](https://www.paprikaapp.com/) intended mostly to be run on fullscreen and with touch support.
 
 
 | STATUS: | Version | Date | Maintained? |
@@ -14,6 +14,7 @@ Display Recipes collection as cardsfrom local file or Paprika intended mostly to
 | Working | `1.0.0` | 2023-12-07 | YES |
 
 
+<img src="https://github.com/ivlovric/MMM-MagicReplicator/blob/main/assets/foodreplicator-logo.jpg" width="400" height="400">
 
 ## Installation
 
