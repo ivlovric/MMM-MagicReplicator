@@ -25,7 +25,7 @@ Manual Installation:
 
 ```bash
 cd ~/MagicMirror/modules
-git clone https://github.com/E3V3A/MMM-Tabulator.git
+git clone https://github.com/ivlovric/MMM-MagicReplicator.git
 cd MMM-MagicReplicator
 npm install
 
