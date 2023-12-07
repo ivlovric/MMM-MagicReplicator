@@ -16,6 +16,8 @@ Display Recipes collection as cards from local file or [Paprika](https://www.pap
 
 <img src="https://github.com/ivlovric/MMM-MagicReplicator/blob/main/assets/foodreplicator-logo.jpg" width="300" height="300">
 <img src="https://github.com/ivlovric/MMM-MagicReplicator/blob/main/assets/MagicReplicator-screenshot.png" width="750" height="450">
+<img src="https://github.com/ivlovric/MMM-MagicReplicator/blob/main/assets/recpedetail-screenshot.png" width="750" height="450">
+
 
 ## Installation
 
