@@ -1,8 +1,8 @@
 # MMM-MagicReplicator
 
-This is a module for the [MagicMirror²](https://github.com/MichMich/MagicMirror/).
+This is a module for the [MagicMirror²](https://github.com/MagicMirrorOrg/MagicMirror).
 
-[![MagicMirror2](https://img.shields.io/badge/MagicMirror-2.2.2-lightgray.svg)](https://github.com/MichMich/MagicMirror)
+[![MagicMirror2](https://img.shields.io/badge/MagicMirror-2.2.2-lightgray.svg)](https://github.com/MagicMirrorOrg/MagicMirror)
 [![GitHub last commit](https://img.shields.io/github/last-commit/ivlovric/MMM-MagicReplicator/main)](https://github.com/ivlovric/MMM-MagicReplicator)
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/ivlovric/MMM-MagicReplicator/graphs/commit-activity)
 
@@ -29,6 +29,16 @@ Manual Installation:
 cd ~/MagicMirror/modules
 git clone https://github.com/ivlovric/MMM-MagicReplicator.git
 cd MMM-MagicReplicator
+npm install
+
+```
+
+## Update
+
+
+```bash
+cd ~/MagicMirror/modules/MMM-MagicReplicator
+git pull
 npm install
 
 ```
@@ -63,7 +73,7 @@ When using **local source**, check already provided example recipe list in `loca
 |----------------- |-----------
 | `module `        | *Required* Module name
 | `header`        | *Optional* Header text
-| `position`        | *Optional* Any Magic Mirror position. fullscreen_above and fullscreen_below are recommended
+| `position`        | *Optional* Any MagicMirror² position. fullscreen_above and fullscreen_below are recommended
 | `email`        | *Mandatory* when using Paprika as recipes provider, otherwise optional
 | `password`        | *Mandatory* when using Paprika as recipes provider, otherwise optional
 | `refreshInterval`        | *Optional* Recipes refresh interval
