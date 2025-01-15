@@ -1,7 +1,7 @@
 {
   "name": "MMM-MagicReplicator",
   "version": "1.0.0",
-  "description": "Todo: Insert description here!",
+  "description": "Display Recipes collection as cards from local file or Paprika recipe app",
   "keywords": [
     "Recipes",
     "Paprika app",
