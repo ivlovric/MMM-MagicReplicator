@@ -2,6 +2,12 @@
   "name": "MMM-MagicReplicator",
   "version": "1.0.0",
   "description": "Todo: Insert description here!",
+  "keywords": [
+    "Recipes",
+    "Paprika app",
+    "Kitchen",
+    "Cooking"
+  ],
   "main": "MMM-MagicReplicator.js",
   "author": "",
   "license": "MIT",
@@ -14,6 +20,10 @@
     "grunt-yamllint": "latest",
     "stylelint-config-standard": "latest",
     "time-grunt": "latest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ivlovric/MMM-MagicReplicator"
   },
   "dependencies": {
     "async": "^3.2.5",
