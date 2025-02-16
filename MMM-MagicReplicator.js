@@ -155,10 +155,10 @@ Module.register("MMM-MagicReplicator", {
 				card.classList.add('card');
 
 				if (element.photo_url) {
-					card.innerHTML = `<h3>${element.name}</h3><img src=${element.photo_url}>`;
+					card.innerHTML = `<h3>${element.name}</h3>  <img class = "recipe-image" img src=${element.photo_url}>`;
 					console.log("cards", card);
 				} else {
-					card.innerHTML = `<h3>${element.name}</h3><img src="modules/MMM-MagicReplicator/assets/empty_recipe_picture.jpg">`;
+					card.innerHTML = `<h3>${element.name}</h3> <img class = "recipe-image" img src="modules/MMM-MagicReplicator/assets/empty_recipe_picture.jpg">`;
 
 					console.log("cards", card);
 				}
@@ -194,22 +194,22 @@ Module.register("MMM-MagicReplicator", {
 
 					contentInner.innerHTML = `<div class="recipe-container">
 					<h1>${element.name}</h1>
-				
+
 					<img class="recipe-image" src="${element.photo_url}" alt="Recipe Image">
-				
+
 					<div class="ingredients">
 					  <h2>Ingredients:</h2>
 					  <p>${element.ingredients}</p>
 					</div>
-				
+
 					<div class="directions">
 					  <h2>Directions:</h2>
 					  <p>${element.directions}</p>
 					</div>
-				
+
 					<p>Source: ${element.source} </p>
 				  </div>
-				  
+
 				  <div class="footer-detail">
 				  <div class="footer-column-detail">
 				  Rating
@@ -317,7 +317,7 @@ Module.register("MMM-MagicReplicator", {
 		container_below.id = "container_below";
 		container_below.classList.add('container_below');
 
-		container_below.innerHTML = `<img class="image_below" id = "1" src="modules/MMM-MagicReplicator/assets/favorite_recipes.jpg">`;
+		container_below.innerHTML = `<div id="container_below"> <img class="image_below" id = "1" src="modules/MMM-MagicReplicator/assets/favorite_recipes.jpg"> </div>`;
 
 		let favsToggle = container_below.getElementsByClassName('image_below');
 		//let randomShow = document.getElementsByClassName('div_random_show');
