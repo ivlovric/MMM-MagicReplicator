@@ -2,7 +2,7 @@
  *
  * MMM-MagicReplicator
  *
- * 
+ *
  * MIT Licensed.
  *
  * Custom here your css module
@@ -12,7 +12,7 @@
  #container {
  max-height:100vh;
   overflow: auto;
-  background-image: linear-gradient(rgba(252, 252, 239, 0.65), rgba(252, 252, 239, 0.75)), url('assets/background.jpg'); 
+  background-image: linear-gradient(rgba(252, 252, 239, 0.65), rgba(252, 252, 239, 0.75)), url('assets/background.jpg');
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: 100% 100%;
@@ -26,13 +26,14 @@
   align-content: center;
   flex-wrap: wrap;
   align-content: flex-start;
-} 
+}
 
 
 .card {
   border: 1px solid #303240;
   border-radius: 20px;
   padding: 10px;
+  margin: 25px;
   margin: 25px;
   width: 220px;
   height: auto;
@@ -169,12 +170,12 @@
   align-items: center;
   justify-content: center;
 
-} 
+}
 
-#cardfav {
-display: flex;
-   align-content: left;
- } 
+//#cardfav {
+//display: flex;
+//   align-content: center;
+// }
 
 .fav_on_card  {
 width: 30px !important;
@@ -211,7 +212,7 @@ img {
   width: 100%;
 }
 
-h3 {
+.h3 {
   font-size: 18px;
   font-family: 'Montserrat', sans-serif;
   position: relative;
@@ -236,7 +237,7 @@ h3 {
   overflow: auto;
   background-color: rgb(3, 3, 3);
   background-color: rgba(3, 3, 3, 0.30);
-} 
+}
 
 .MMM-MagicReplicator-blur {
   max-height: 800px;
@@ -253,7 +254,7 @@ h3 {
 
   -webkit-filter: blur(10px) brightness(50%);
   filter: blur(20px) brightness(50%);
-} 
+}
 
 .undefined-blur {
   max-height: 800px;
@@ -270,7 +271,8 @@ h3 {
 
   -webkit-filter: blur(10px) brightness(50%);
   filter: blur(20px) brightness(50%);
-} 
+}
+
 
 
  #container_below {
@@ -283,14 +285,16 @@ h3 {
   position: fixed;
   bottom: 0;
   width: 100%;
-  height: 5%;
+  height: 30%;
   border-radius: 10px;
   block-size: fit-content;
   display: flex;
   justify-content: center;
   align-items: center;
 
-} 
+}
+
+
 
 .recipe-container {
   background-image: linear-gradient(rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.95)), url(assets/empty_recipe_picture.jpg);
@@ -549,41 +553,4 @@ a:hover {
 
 .footer-column-detail {
   flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 6px;
-}
-
-.footer-icon {
-  font-size: 1.5em;
-  line-height: 1;
-  opacity: 0.8;
-}
-
-.footer-label {
-  font-size: 0.75em;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  font-weight: 500;
-  color: #777;
-}
-
-.footer-value {
-  font-size: 1em;
-  font-weight: 500;
-  letter-spacing: 1px;
-  color: #333;
-}
-
-.footer-value .no-rating,
-.footer-value .not-favorite {
-  opacity: 0.6;
-  font-style: italic;
-  font-size: 0.9em;
-  color: #999;
-}
-
-.footer-value .is-favorite {
-  color: #d4af37;
 }
