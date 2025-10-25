@@ -13,7 +13,7 @@ Background, icons and logo credit to Dall-E
 
 | STATUS: | Version | Date | Maintained? |
 |:------- |:------- |:---- |:----------- |
-| Working | `1.1.0` | 2025-25-11 | YES |
+| Working | `1.1.1` | 2025-25-11 | YES |
 
 
 <img src="https://github.com/ivlovric/MMM-MagicReplicator/blob/main/assets/foodreplicator-logo.jpg" width="300" height="300">

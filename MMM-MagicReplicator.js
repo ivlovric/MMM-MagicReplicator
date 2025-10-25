@@ -343,14 +343,14 @@ Module.register("MMM-MagicReplicator", {
 
 					}
 
-					//	// When the user clicks anywhere outside of the modal, close it - not working well
-					//	window.onclick = function (event) {
-					//		if (event.target == modal) {
-					//			modal.style.display = "none";
-					//			container.classList.remove((`${this.name}-blur` || "undefined-blur"));
-					//			modal.remove();
-					//		}
-					//	}
+					// When the user clicks anywhere outside of the modal, close it
+					modal.onclick = function (event) {
+						if (event.target === modal) {
+							modal.style.display = "none";
+							container.classList.remove((`${this.name}-blur` || "undefined-blur"));
+							modal.remove();
+						}
+					}
 
 				});
 
