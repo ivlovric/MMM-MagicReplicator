@@ -34,19 +34,14 @@
   border-radius: 20px;
   padding: 10px;
   margin: 25px;
-  margin: 25px;
   width: 220px;
-  height: auto;
   min-height: 400px;
   display: flex;
   flex-direction: column;
-  /*background-image: linear-gradient(rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.95)), url('assets/empty_recipe_picture.jpg');*/
   background: radial-gradient(at 0% 0%, rgb(255, 255, 255) 10px, rgb(220, 220, 217) 50%, #757a7d 100%);
-
   background-repeat: no-repeat;
   background-size: 100% 100%;
   align-items: center;
-  justify-content: flex-start;
   box-shadow:6px 9px 19px rgb(62, 62, 62);
   cursor: pointer;
   transition: transform 0.2s ease;
@@ -61,6 +56,10 @@
   width: 100%;
   padding: 8px 0;
   font-size: 0.85em;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
 }
 
 .card-time-info,
@@ -139,21 +138,33 @@
   height: auto;
 }
 
-/* Font size adjustments for different card sizes */
+/* Font size and height adjustments for different card sizes */
 .card-xs h3 {
-  font-size: 14px;
+  font-size: 12px;
+  min-height: 40px;
+  max-height: 40px;
+  line-height: 1.2;
 }
 
 .card-s h3 {
-  font-size: 16px;
+  font-size: 14px;
+  min-height: 45px;
+  max-height: 45px;
+  line-height: 1.25;
 }
 
 .card-m h3 {
-  font-size: 18px;
+  font-size: 16px;
+  min-height: 50px;
+  max-height: 50px;
+  line-height: 1.3;
 }
 
 .card-l h3 {
-  font-size: 22px;
+  font-size: 18px;
+  min-height: 60px;
+  max-height: 60px;
+  line-height: 1.35;
 } 
 
 .card-no-image {
@@ -172,19 +183,20 @@
 
 }
 
-//#cardfav {
-//display: flex;
-//   align-content: center;
-// }
+#cardfav {
+  margin-top: auto;
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  padding-top: 10px;
+}
 
 .fav_on_card  {
-width: 30px !important;
-display: flex;
-align-content: left;
-border-radius: 50%;
-
-
-   } 
+  width: 30px !important;
+  display: flex;
+  align-content: left;
+  border-radius: 50%;
+} 
 
 .card img {
   width: 100%;
@@ -204,12 +216,23 @@ img {
 } 
 
 .card h3 {
-  font-size: 18px;
+  font-size: 16px;
   font-family: 'Montserrat', sans-serif;
   text-align: center;
-  margin: 5px 0 10px 0;
+  margin: 0 0 10px 0;
   color: dimgrey;
   width: 100%;
+  min-height: 50px;
+  max-height: 50px;
+  overflow: hidden;
+  line-height: 1.3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
+  padding: 0 5px;
 }
 
 .h3 {
