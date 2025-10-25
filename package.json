@@ -9,7 +9,7 @@
     "Cooking"
   ],
   "main": "MMM-MagicReplicator.js",
-  "author": "",
+  "author": "Ivica Lovric",
   "license": "MIT",
   "devDependencies": {
     "grunt": "latest",

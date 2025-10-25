@@ -54,37 +54,54 @@
 
 .card-metadata {
   width: 100%;
-  padding: 8px 0;
+  padding: 10px 0;
   font-size: 0.85em;
   flex-grow: 1;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  flex-wrap: wrap;
   gap: 6px;
+  align-content: flex-start;
 }
 
 .card-time-info,
 .card-details {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  margin-bottom: 6px;
+  display: contents;
 }
 
 .card-info-item {
-  color: #333;
+  color: #2c2c2c;
   font-size: 0.9em;
-  padding: 2px 4px;
-  background: rgba(255, 255, 255, 0.7);
-  border-radius: 4px;
+  padding: 5px 10px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.4), rgba(220, 220, 217, 0.5));
+  border-radius: 8px;
   text-align: left;
   width: fit-content;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  font-weight: 500;
+  transition: all 0.2s ease;
+  backdrop-filter: blur(4px);
+}
+
+.card:hover .card-info-item {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.5), rgba(220, 220, 217, 0.6));
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
 }
 
 .card-rating {
   text-align: center;
-  font-size: 1.1em;
-  margin-top: 4px;
-  letter-spacing: 2px;
+  font-size: 1.2em;
+  margin-top: 8px;
+  padding: 6px;
+  letter-spacing: 3px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.35), rgba(255, 250, 220, 0.45));
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  backdrop-filter: blur(4px);
+  width: 100%;
+  flex-basis: 100%;
 }
 
 /* Card size variations */
@@ -120,12 +137,23 @@
 .card.card-xs .card-metadata,
 .card.card-s .card-metadata {
   font-size: 0.75em;
+  padding: 8px 0;
+  gap: 4px;
 }
 
 .card.card-xs .card-info-item,
 .card.card-s .card-info-item {
   font-size: 0.85em;
-  padding: 1px 3px;
+  padding: 4px 8px;
+  border-radius: 6px;
+}
+
+.card.card-xs .card-rating,
+.card.card-s .card-rating {
+  font-size: 1em;
+  letter-spacing: 2px;
+  padding: 4px;
+  margin-top: 6px;
 }
 
 /* Image size adjustments for different card sizes */
