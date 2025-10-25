@@ -13,11 +13,11 @@ Background, icons and logo credit to Dall-E
 
 | STATUS: | Version | Date | Maintained? |
 |:------- |:------- |:---- |:----------- |
-| Working | `1.0.0` | 2023-12-07 | YES |
+| Working | `1.1.0` | 2025-25-11 | YES |
 
 
 <img src="https://github.com/ivlovric/MMM-MagicReplicator/blob/main/assets/foodreplicator-logo.jpg" width="300" height="300">
-<img src="https://github.com/ivlovric/MMM-MagicReplicator/blob/main/assets/MagicReplicator-screenshot.png" width="750" height="450">
+<img src="https://github.com/ivlovric/MMM-MagicReplicator/blob/main/assets/MagicReplicator-screenshot.png" width="450" height="750">
 <img src="https://github.com/ivlovric/MMM-MagicReplicator/blob/main/assets/recpedetail-screenshot.png" width="750" height="450">
 
 
