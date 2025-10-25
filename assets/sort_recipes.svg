@@ -1,0 +1,34 @@
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Outer circle with gradient shadow -->
+  <defs>
+    <linearGradient id="shadowGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#e8e4d8;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#5a6570;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+
+  <!-- Shadow circle -->
+  <circle cx="105" cy="105" r="80" fill="rgba(90, 101, 112, 0.3)"/>
+
+  <!-- Main background circle -->
+  <circle cx="100" cy="100" r="80" fill="#f5f2e8"/>
+
+  <!-- Outer ring -->
+  <circle cx="100" cy="100" r="80" fill="none" stroke="#c9c2ad" stroke-width="12"/>
+
+  <!-- Accent arc -->
+  <path d="M 100 20 A 80 80 0 0 1 180 100" fill="none" stroke="#5a6570" stroke-width="12" stroke-linecap="round"/>
+
+  <!-- Sort arrows symbol -->
+  <!-- Up arrow -->
+  <path d="M 100 45 L 115 65 L 105 65 L 105 85 L 95 85 L 95 65 L 85 65 Z" fill="#c9c2ad" stroke="#8a8570" stroke-width="1"/>
+
+  <!-- Down arrow -->
+  <path d="M 100 155 L 85 135 L 95 135 L 95 115 L 105 115 L 105 135 L 115 135 Z" fill="#5a6570" stroke="#3a4550" stroke-width="1"/>
+
+  <!-- A letter (top) -->
+  <text x="75" y="75" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#c9c2ad">A</text>
+
+  <!-- Z letter (bottom) -->
+  <text x="117" y="135" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#5a6570">Z</text>
+</svg>

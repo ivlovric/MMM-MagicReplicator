@@ -6,7 +6,13 @@
         "source": "recepti.index.hr",
         "source_url": "https://recepti.index.hr/recept/2043-pita-od-sira-s-medom",
         "on_favorites": true,
-        "photo_url": "https://recepti-api.index.hr/img/preview/large/recipe/255fa57a-1322-4171-9d8f-97ac9cf86276/1200x900%20pita%20od%20sira.jpg"
+        "photo_url": "https://recepti-api.index.hr/img/preview/large/recipe/255fa57a-1322-4171-9d8f-97ac9cf86276/1200x900%20pita%20od%20sira.jpg",
+        "servings": "8 komada",
+        "prep_time": "20 min",
+        "cook_time": "40 min",
+        "difficulty": "Medium",
+        "rating": 5,
+        "nutritional_info": "Calories: 320\nTotal Fat: 16g\nSaturated Fat: 9g\nTrans Fat: 0g\nCholesterol: 135mg\nSodium: 280mg\nTotal Carbohydrate: 35g\nDietary Fiber: 1g\nSugars: 12g\nProtein: 11g\nVitamin D: 1mcg\nCalcium: 180mg\nIron: 2mg\nPotassium: 150mg"
     },
     {
         "name": "Špinat Na Mlijeku",
@@ -15,7 +21,13 @@
         "source": "recepti.index.hr",
         "source_url": "https://recepti.index.hr/recept/306-spinat-na-mlijeku",
         "on_favorites": false,
-        "photo_url": "https://recepti-api.index.hr/img/preview/large/recipe/9a92a28a-0fd1-4465-b484-6d2a18d8784b/shutterstock_581472334.jpg"
+        "photo_url": "https://recepti-api.index.hr/img/preview/large/recipe/9a92a28a-0fd1-4465-b484-6d2a18d8784b/shutterstock_581472334.jpg",
+        "servings": "4 servings",
+        "prep_time": "10 min",
+        "cook_time": "15 min",
+        "difficulty": "Easy",
+        "rating": 4,
+        "nutritional_info": "Calories: 185\nTotal Fat: 14g\nSaturated Fat: 8g\nTrans Fat: 0g\nCholesterol: 35mg\nSodium: 320mg\nTotal Carbohydrate: 10g\nDietary Fiber: 3g\nSugars: 4g\nProtein: 7g\nVitamin D: 0.5mcg\nCalcium: 250mg\nIron: 3mg\nPotassium: 680mg"
     },
     {
         "name": "Bangers I Kaša S Umakom Od Luka: Klasična Obiteljska Večera",

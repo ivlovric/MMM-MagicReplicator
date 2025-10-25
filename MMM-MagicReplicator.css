@@ -33,19 +33,126 @@
   border: 1px solid #303240;
   border-radius: 20px;
   padding: 10px;
-  margin: 25px; 
+  margin: 25px;
   width: 220px;
-  height: 400px;
-  display: inline-grid;
+  height: auto;
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
   /*background-image: linear-gradient(rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.95)), url('assets/empty_recipe_picture.jpg');*/
   background: radial-gradient(at 0% 0%, rgb(255, 255, 255) 10px, rgb(220, 220, 217) 50%, #757a7d 100%);
 
   background-repeat: no-repeat;
   background-size: 100% 100%;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   box-shadow:6px 9px 19px rgb(62, 62, 62);
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
 
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 8px 12px 24px rgb(62, 62, 62);
+}
+
+.card-metadata {
+  width: 100%;
+  padding: 8px 0;
+  font-size: 0.85em;
+}
+
+.card-time-info,
+.card-details {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 6px;
+}
+
+.card-info-item {
+  color: #333;
+  font-size: 0.9em;
+  padding: 2px 4px;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 4px;
+  text-align: left;
+  width: fit-content;
+}
+
+.card-rating {
+  text-align: center;
+  font-size: 1.1em;
+  margin-top: 4px;
+  letter-spacing: 2px;
+}
+
+/* Card size variations */
+.card.card-xs {
+  width: 150px;
+  min-height: 250px;
+  margin: 15px;
+  padding: 8px;
+}
+
+.card.card-s {
+  width: 180px;
+  min-height: 320px;
+  margin: 20px;
+  padding: 9px;
+}
+
+.card.card-m {
+  width: 220px;
+  min-height: 400px;
+  margin: 25px;
+  padding: 10px;
+}
+
+.card.card-l {
+  width: 280px;
+  min-height: 500px;
+  margin: 30px;
+  padding: 12px;
+}
+
+/* Adjust metadata font size for smaller cards */
+.card.card-xs .card-metadata,
+.card.card-s .card-metadata {
+  font-size: 0.75em;
+}
+
+.card.card-xs .card-info-item,
+.card.card-s .card-info-item {
+  font-size: 0.85em;
+  padding: 1px 3px;
+}
+
+/* Image size adjustments for different card sizes */
+.card-xs img,
+.card-s img,
+.card-m img,
+.card-l img {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+}
+
+/* Font size adjustments for different card sizes */
+.card-xs h3 {
+  font-size: 14px;
+}
+
+.card-s h3 {
+  font-size: 16px;
+}
+
+.card-m h3 {
+  font-size: 18px;
+}
+
+.card-l h3 {
+  font-size: 22px;
 } 
 
 .card-no-image {
@@ -70,7 +177,7 @@ display: flex;
  } 
 
 .fav_on_card  {
-width: 30px;
+width: 30px !important;
 display: flex;
 align-content: left;
 border-radius: 50%;
@@ -78,17 +185,34 @@ border-radius: 50%;
 
    } 
 
- img {
+.card img {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  object-fit: cover;
+  display: block;
+  margin: 0 auto 10px auto;
+  border-radius: 8px;
+}
+
+img {
   width: 200px;
   object-fit: center;
   display: flex;
   margin: auto;
-
 } 
+
+.card h3 {
+  font-size: 18px;
+  font-family: 'Montserrat', sans-serif;
+  text-align: center;
+  margin: 5px 0 10px 0;
+  color: dimgrey;
+  width: 100%;
+}
 
 h3 {
   font-size: 18px;
-  /* line-height: 40px; */
   font-family: 'Montserrat', sans-serif;
   position: relative;
   display: flex;
@@ -163,34 +287,110 @@ h3 {
   border-radius: 10px;
   block-size: fit-content;
   display: flex;
+  justify-content: center;
+  align-items: center;
 
 } 
 
 .recipe-container {
-background-image: linear-gradient(rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.95)), url(assets/empty_recipe_picture.jpg);
-background-repeat: no-repeat;
+  background-image: linear-gradient(rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.95)), url(assets/empty_recipe_picture.jpg);
+  background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: 100% 100%;
+}
 
+.recipe-main-content {
+  display: flex;
+  gap: 30px;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+
+.recipe-info {
+  flex: 1;
+  min-width: 300px;
+}
+
+.nutrition-container {
+  flex: 0 0 300px;
+  position: sticky;
+  top: 20px;
+}
+
+/* Keep nutrition label white background for FDA standard look */
+.nutrition-container .nf {
+  background: #fff;
+}
+
+/* Style for the custom footer when no data is available */
+.nutrition-container .nf-customFooter {
+  background-color: #fff3cd;
+  border: 1px solid #ffc107;
+  border-radius: 4px;
+  padding: 8px;
+  margin-top: 8px;
+  color: #856404;
+  font-size: 0.85em;
+  line-height: 1.4;
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .recipe-main-content {
+    flex-direction: column;
+  }
+
+  .nutrition-container {
+    flex: 1 1 auto;
+    position: relative;
+    top: auto;
+    width: 100%;
+  }
+
+  .nutrition-container .nf {
+    width: 100% !important;
+  }
 } 
 
- .image_below {
+.button-container {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
+}
+
+.image_below {
   width: 75px;
   border: 1px snow;
   object-fit: center;
   border-radius: 50%;
   padding: 10px;
-
-} 
-
-/* Modal Content */
-.modal-content {
-  background-color: #fefefe;
-  margin: auto;
-  padding: 20px;
-  border: 3px solid #888;
-  width: 80%;
+  cursor: pointer;
+  transition: transform 0.2s ease, opacity 0.3s ease;
 }
+
+.image_below:hover {
+  transform: scale(1.1);
+  opacity: 0.8;
+}
+
+.sort-button {
+  width: 75px;
+  height: 75px;
+  border: 1px solid snow;
+  object-fit: center;
+  border-radius: 50%;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  transition: background-color 0.3s ease;
+}
+
+.sort-button:hover {
+  background-color: rgba(255,255,255,0.4);
+} 
 
 /* Modal Content */
 .modal-content {
@@ -199,7 +399,38 @@ background-repeat: no-repeat;
   padding: 20px;
   border: 3px solid #888;
   border-radius: 20px;
-  width: 80%;
+  width: 90%;
+  max-width: 1200px;
+  max-height: 85vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Inner scrollable container */
+.modal-inner-content {
+  overflow-y: auto;
+  padding-right: 10px;
+  max-height: calc(85vh - 90px);
+}
+
+/* Improve modal scrolling */
+.modal-inner-content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.modal-inner-content::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 10px;
+}
+
+.modal-inner-content::-webkit-scrollbar-thumb {
+  background: rgba(136, 136, 136, 0.5);
+  border-radius: 10px;
+}
+
+.modal-inner-content::-webkit-scrollbar-thumb:hover {
+  background: rgba(85, 85, 85, 0.7);
 }
 
 /* The Close Button */
@@ -223,6 +454,58 @@ background-repeat: no-repeat;
   height: auto;
   border-radius: 8px;
   margin-bottom: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.recipe-info h1 {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+.recipe-meta-section {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 15px 0;
+  padding: 12px;
+  background: rgba(240, 240, 240, 0.5);
+  border-radius: 8px;
+}
+
+.recipe-meta-item {
+  background: rgba(255, 255, 255, 0.9);
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 0.95em;
+  color: #555;
+  border: 1px solid #ddd;
+}
+
+.recipe-meta-item strong {
+  color: #333;
+}
+
+.ingredients, .directions, .recipe-notes {
+  margin-bottom: 20px;
+}
+
+.ingredients h2, .directions h2, .recipe-notes h2 {
+  color: #444;
+  border-bottom: 2px solid #e0e0e0;
+  padding-bottom: 5px;
+  margin-bottom: 10px;
+}
+
+.recipe-notes {
+  background: rgba(255, 250, 205, 0.3);
+  padding: 12px;
+  border-radius: 8px;
+  border-left: 4px solid #f0ad4e;
+}
+
+.recipe-notes p {
+  font-style: italic;
+  color: #666;
 }
 
 h1 {
@@ -253,16 +536,54 @@ a:hover {
 
 .footer-detail {
   display: flex;
-  justify-content: space-between;
-  color: #ddd;
+  justify-content: space-around;
+  gap: 20px;
+  background: rgba(240, 240, 240, 0.5);
+  color: #555;
   text-align: center;
-  padding: 10px;
-  flex-wrap: nowrap;
-  align-content: center;
-  align-items: center;
-
+  padding: 15px;
+  border-radius: 8px;
+  margin-top: 15px;
+  border: 1px solid #e0e0e0;
 }
 
 .footer-column-detail {
   flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.footer-icon {
+  font-size: 1.5em;
+  line-height: 1;
+  opacity: 0.8;
+}
+
+.footer-label {
+  font-size: 0.75em;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 500;
+  color: #777;
+}
+
+.footer-value {
+  font-size: 1em;
+  font-weight: 500;
+  letter-spacing: 1px;
+  color: #333;
+}
+
+.footer-value .no-rating,
+.footer-value .not-favorite {
+  opacity: 0.6;
+  font-style: italic;
+  font-size: 0.9em;
+  color: #999;
+}
+
+.footer-value .is-favorite {
+  color: #d4af37;
 }

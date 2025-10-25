@@ -75,13 +75,22 @@ module.exports = NodeHelper.create({
 
 					})
 					.then((recipe) => {
-						//console.log("TYPE of RECIPE2 is ",typeof(recipe));			
+						//console.log("TYPE of RECIPE2 is ",typeof(recipe));
 						var resp = [];
 
 						console.log(this.name + " All recipes returned");
 
 						for (const recipeResult of recipe) {
 							console.log(this.name + " Recipe name is ", recipeResult.name);
+
+							// Log nutrition info for debugging
+							if (recipeResult.nutritional_info) {
+								console.log(this.name + " Recipe has nutritional_info");
+								console.log(this.name + " Nutritional info:", recipeResult.nutritional_info);
+							}
+							if (recipeResult.servings) {
+								console.log(this.name + " Servings:", recipeResult.servings);
+							}
 
 							if (recipeResult.name != "") {
 								resp.push(recipeResult);

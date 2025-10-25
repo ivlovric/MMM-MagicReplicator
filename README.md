@@ -48,7 +48,8 @@ var config = {
         email: "",
         password: "",
         refreshInterval: 600,
-        source: "local"
+        source: "local",
+        cardSize: "S"
     }
 },
     ]
@@ -68,5 +69,6 @@ When using **local source**, check already provided example recipe list in `loca
 | `password`        | *Mandatory* when using Paprika as recipes provider, otherwise optional
 | `refreshInterval`        | *Optional* Recipes refresh interval
 | `source`        | *Optional* "local" or "paprika", default is local
+| `cardSize`        | *Optional* Card size: "XS", "S", "M", "L". Default is "M"
 
 Thanks to https://github.com/kaelspencer/MMM-PaprikaMenu and Kael for introducing me with node paprika library.
