@@ -605,3 +605,30 @@
 .footer-column-detail {
   flex: 1;
 }
+
+.recipe-load-error {
+  margin: auto;
+  padding: 30px 40px;
+  max-width: 600px;
+  background: rgba(240, 240, 240, 0.75);
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  color: #555;
+  text-align: center;
+}
+
+.recipe-load-error-title {
+  font-size: 1.4em;
+  margin-bottom: 10px;
+}
+
+.recipe-load-error-reason {
+  font-size: 1em;
+  word-break: break-word;
+}
+
+.recipe-load-error-hint {
+  font-size: 0.85em;
+  margin-top: 10px;
+  opacity: 0.7;
+}

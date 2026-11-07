@@ -13,6 +13,7 @@ Module.register("MMM-MagicReplicator", {
 	favorites_content: "",
 	random: false,
 	sortOrder: "recent", // "recent" or "alphabetical"
+	loadError: null, // Last recipe load failure, shown when no recipes are available
 
 	defaults: {
 		email: "",
@@ -21,7 +22,10 @@ Module.register("MMM-MagicReplicator", {
 		updateFadeSpeed: 500,
 		message: "",
 		source: "local", // "local" or "paprika"
-		cardSize: "M" // "XS", "S", "M", "L"
+		cardSize: "M", // "XS", "S", "M", "L"
+		maxConcurrentRequests: 4, //How many Paprika recipe detail requests may be in flight at once.
+		maxRetries: 3, //How many extra attempts a failed Paprika request gets.
+		retryBaseDelayMs: 500 //Base delay for the exponential retry backoff.
 	},
 
 	getScripts: function () {
@@ -79,6 +83,9 @@ Module.register("MMM-MagicReplicator", {
 				instanceId: this.identifier,
 				email: this.config.email,
 				password: this.config.password,
+				maxConcurrentRequests: this.config.maxConcurrentRequests,
+				maxRetries: this.config.maxRetries,
+				retryBaseDelayMs: this.config.retryBaseDelayMs,
 			});
 		}
 		else {
@@ -132,6 +139,12 @@ Module.register("MMM-MagicReplicator", {
 		if (this.defaults.message == "NULL") {
 			console.log('No recipes found or error loading');
 			this.sendNotification("SHOW_ALERT", { type: "notification", title: "No Recipes Found", timer: 10000 });
+			return container;
+		}
+
+		if (this.loadError && !this.hasRecipes()) {
+			console.log('Rendering recipe load error:', this.loadError);
+			container.appendChild(this.createErrorNotice(this.loadError));
 			return container;
 		}
 
@@ -376,6 +389,25 @@ Module.register("MMM-MagicReplicator", {
 		this.sendSocketNotification("MMM-MagicReplicator-NOTIFICATION_TEST", data);
 	},
 
+	/* hasRecipes()
+	 * Whether a previous load left usable recipe data on screen.
+	 */
+	hasRecipes: function () {
+		return Array.isArray(this.defaults.message) && this.defaults.message.length > 0;
+	},
+
+	/* createErrorNotice(reason)
+	 * Replace the blank screen with a readable reason when no recipes loaded.
+	 */
+	createErrorNotice: function (reason) {
+		var notice = document.createElement("div");
+		notice.classList.add("recipe-load-error");
+		notice.innerHTML = `<div class="recipe-load-error-title">Recipes could not be loaded</div>
+			<div class="recipe-load-error-reason">${reason}</div>
+			<div class="recipe-load-error-hint">Retrying in ${this.config.updateInterval} minutes.</div>`;
+		return notice;
+	},
+
 	// socketNotificationReceived from helper
 	socketNotificationReceived: function (notification, payload) {
 		console.log("Return socket notification received in main:", notification);
@@ -383,18 +415,38 @@ Module.register("MMM-MagicReplicator", {
 		if (notification == "PAPRIKA_RECIPE_DATA" || notification == "LOCAL_RECIPE_DATA") {
 
 			this.dataRefreshTimeStamp = Date.now();
+			this.loadError = null;
 
-			console.log("payload received", payload);
+			console.log("recipes received:", Array.isArray(payload) ? payload.length : 0);
 			this.defaults.message = payload;
 
 			this.favorites_content = this.defaults.message.filter(fav =>
 				fav.on_favorites
 			);
 
-			console.log(this.defaults.message);
-			console.log(this.favorites_content);
+			console.log("favorite recipes:", this.favorites_content.length);
 
 			this.updateDom(this.config.updateFadeSpeed);
+		}
+		else if (notification == "PAPRIKA_RECIPE_ERROR") {
+			var reason = payload && payload.reason ? payload.reason : "Unknown error";
+			console.log("Recipe load failed:", reason);
+
+			this.loadError = reason;
+
+			// A failed refresh keeps the recipes that are already on screen;
+			// only a cold start has nothing to fall back to.
+			var keptRecipes = this.hasRecipes();
+			this.sendNotification("SHOW_ALERT", {
+				type: "notification",
+				title: "Recipes could not be loaded",
+				message: keptRecipes ? reason + " - showing last loaded recipes." : reason,
+				timer: 10000
+			});
+
+			if (!keptRecipes) {
+				this.updateDom(this.config.updateFadeSpeed);
+			}
 		}
 		else if (notification == "NULL") {
 			console.log("NULL ENTERED", notification);
