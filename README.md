@@ -13,7 +13,7 @@ Background, icons and logo credit to Dall-E
 
 | STATUS: | Version | Date | Maintained? |
 |:------- |:------- |:---- |:----------- |
-| Working | `1.1.1` | 2025-25-11 | YES |
+| Working | `1.1.2` | 2026-11-07 | YES |
 
 
 <img src="https://github.com/ivlovric/MMM-MagicReplicator/blob/main/assets/foodreplicator-logo.jpg" width="300" height="300">
@@ -80,5 +80,8 @@ When using **local source**, check already provided example recipe list in `loca
 | `refreshInterval`        | *Optional* Recipes refresh interval
 | `source`        | *Optional* "local" or "paprika", default is local
 | `cardSize`        | *Optional* Card size: "XS", "S", "M", "L". Default is "M"
+| `maxConcurrentRequests` | *Optional* Max in-flight Paprika recipe detail requests. Default is `4`. Raise only if your network tolerates it; the previous unbounded `Promise.all` path is what caused `ECONNRESET` failures on large libraries. |
+| `maxRetries` | *Optional* Extra attempts for a failed Paprika request. Default is `3`. |
+| `retryBaseDelayMs` | *Optional* Base delay (ms) for the exponential retry backoff. Default is `500`. |
 
 Thanks to https://github.com/kaelspencer/MMM-PaprikaMenu and Kael for introducing me with node paprika library.

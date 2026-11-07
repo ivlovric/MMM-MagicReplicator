@@ -7,6 +7,7 @@
 
 var NodeHelper = require("node_helper");
 var PaprikaApi = require("paprika-api");
+var RecipeSync = require("./lib/recipeSync");
 
 module.exports = NodeHelper.create({
 
@@ -32,18 +33,22 @@ module.exports = NodeHelper.create({
 	 * argument payload mixed - The payload of the notification.
 	 */
 	socketNotificationReceived: function (notification, payload) {
-		console.log(this.name + " received a socket notification: " + notification + " - Payload: " + payload);
+		// The payload is never logged: for Paprika it holds the account email
+		// and password.
+		console.log(this.name + " received a socket notification: " + notification);
 
 		var self = this;
 
 		if (notification === "PAPRIKA_RECIPE_GET" || notification === "START") {
-			console.log("Working notification system. Notification:", notification, "payload: ", payload);
+			console.log("Working notification system. Notification:", notification);
 			console.log("Geting data for module [" + this.name + "]");
 
 			if (payload.email == null || payload.email == "") {
-				console.log(moment().format("D-MMM-YY HH:mm") + " ** ERROR ** No email set");
+				console.log(this.name + " ** ERROR ** No email set");
+				this.sendRecipeError("No Paprika email configured");
 			} else if (payload.password == null || payload.password == "") {
-				console.log(moment().format("D-MMM-YY HH:mm") + " ** ERROR ** No password set");
+				console.log(this.name + " ** ERROR ** No password set");
+				this.sendRecipeError("No Paprika password configured");
 			} else {
 				if (this.paprikaApi == null) {
 					this.paprikaApi = new PaprikaApi.PaprikaApi(payload.email, payload.password);
@@ -54,63 +59,63 @@ module.exports = NodeHelper.create({
 					return;
 				}
 
-				this.paprikaApi.recipes()
-					.then((recipes) => {
-						var recipeCount = recipes.length
-						//console.log("recepti sve ",recipes)
-						console.log(this.name + " Recipe count is ", recipeCount);
+				this.outstandingRequest = true;
 
-						var recipePromises = [];
+				RecipeSync.syncRecipes({
+					api: this.paprikaApi,
+					options: {
+						concurrency: payload.maxConcurrentRequests,
+						maxRetries: payload.maxRetries,
+						retryBaseDelayMs: payload.retryBaseDelayMs
+					},
+					logger: {
+						log: function (message) {
+							console.log(self.name + " " + message);
+						},
+						warn: function (message) {
+							console.log(self.name + " " + message);
+						}
+					}
+				})
+					.then((result) => {
+						var failedCount = result.failures.length;
+						console.log(self.name + " Recipe sync finished: " + result.recipes.length + " of " + result.requestedCount + " recipes loaded, " + failedCount + " failed");
 
-						for (const uid of recipes) {
-							recipePromises.push(self.paprikaApi.recipe(uid.uid));
-							//console.log('UID IS',uid.uid);
-
+						if (result.aborted) {
+							console.log(self.name + " Sync aborted early: " + result.abortReason);
+						}
+						if (failedCount > 0) {
+							console.log(self.name + " Failure reasons: " + self.summarizeFailures(result.failures));
 						}
 
-						console.log(this.name + " Waiting on " + recipes.length + "Paprika recipe data");
-						//console.log(" RECIPE is ",recipePromises);
-
-						return Promise.all(recipePromises);
-
-					})
-					.then((recipe) => {
-						//console.log("TYPE of RECIPE2 is ",typeof(recipe));
-						var resp = [];
-
-						console.log(this.name + " All recipes returned");
-
-						for (const recipeResult of recipe) {
-							console.log(this.name + " Recipe name is ", recipeResult.name);
-
-							// Log nutrition info for debugging
-							if (recipeResult.nutritional_info) {
-								console.log(this.name + " Recipe has nutritional_info");
-								console.log(this.name + " Nutritional info:", recipeResult.nutritional_info);
-							}
-							if (recipeResult.servings) {
-								console.log(this.name + " Servings:", recipeResult.servings);
-							}
-
-							if (recipeResult.name != "") {
-								resp.push(recipeResult);
-							}
+						if (result.recipes.length === 0) {
+							self.sendRecipeError(result.requestedCount === 0
+								? "Paprika returned no recipes"
+								: "All " + result.requestedCount + " Paprika recipe details failed: " + self.summarizeFailures(result.failures));
+							return;
 						}
-						self.sendSocketNotification("PAPRIKA_RECIPE_DATA", resp);
 
+						self.sendSocketNotification("PAPRIKA_RECIPE_DATA", result.recipes);
 					})
-
 					.catch((error) => {
-						console.log(this.name + " Exception syncing");
-						console.log(error);
+						// Only a log-safe description is printed: the raw error
+						// carries the authenticated request options, including
+						// the Paprika email and password.
+						var reason = RecipeSync.describeError(error);
+						console.log(self.name + " Exception syncing recipe list: " + reason);
+						self.sendRecipeError("Could not reach Paprika (" + reason + ")");
 					})
-
+					.then(() => {
+						self.outstandingRequest = false;
+					});
 			}
 		}
 		else if (notification === "LOCAL_RECIPE_GET") {
 
 			try {
-				var recipeList = require("../MMM-MagicReplicator/local_recipes.json");
+				// Resolved relative to this file, so the module keeps working
+				// when the install directory has been renamed.
+				var recipeList = require("./local_recipes.json");
 
 				//console.log(this.name + " Local recipes list: ",recipeList );
 				console.log(this.name + " Local recipes list type is: ", typeof (recipeList));
@@ -140,10 +145,33 @@ module.exports = NodeHelper.create({
 
 		}
 		else {
-			console.log("NO recipe sources found", err);
+			console.log(this.name + " NO recipe sources found for notification: " + notification);
 			self.sendSocketNotification("NULL", "NULL");
 		}
 
+	},
+
+	/* summarizeFailures(failures)
+	 * Group failures by their log-safe reason so a long outage prints one line
+	 * per distinct cause instead of one line per recipe.
+	 */
+	summarizeFailures: function (failures) {
+		var counts = {};
+		for (var i = 0; i < failures.length; i++) {
+			var reason = failures[i].reason;
+			counts[reason] = (counts[reason] || 0) + 1;
+		}
+		return Object.keys(counts).map(function (reason) {
+			return counts[reason] + "x " + reason;
+		}).join(", ");
+	},
+
+	/* sendRecipeError(reason)
+	 * Tell the frontend that this sync produced no usable recipes, so it can
+	 * surface a message instead of rendering an empty screen.
+	 */
+	sendRecipeError: function (reason) {
+		this.sendSocketNotification("PAPRIKA_RECIPE_ERROR", { reason: reason });
 	},
 
 	// Example function send notification test
